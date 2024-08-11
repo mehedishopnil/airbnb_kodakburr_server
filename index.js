@@ -30,7 +30,7 @@ async function run() {
     // Get the collections
     const hotelDataCollection = db.collection("hotelData");
     const usersDataCollection = db.collection("users");
-    // const hotelListDataCollection = db.collection("hotelListData");
+    const hotelListCollection = db.collection("hotelList");
     const earningListCollection = db.collection("earningList");
 
     // Route to fetch hotel data
@@ -55,28 +55,28 @@ async function run() {
       }
     });
 
-    // // Route to fetch hotel list data
-    // app.get('/hotelListData', async (req, res) => {
-    //   try {
-    //     const result = await hotelListDataCollection.find().toArray();
-    //     res.json(result);
-    //   } catch (error) {
-    //     console.error('Error fetching hotel list data:', error);
-    //     res.status(500).json({ error: 'Internal Server Error' });
-    //   }
-    // });
+    // Route to fetch hotel list data
+    app.get('/hotel-list', async (req, res) => {
+      try {
+        const result = await hotelListCollection.find().toArray();
+        res.json(result);
+      } catch (error) {
+        console.error('Error fetching hotel list data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    });
 
-    // // Route to insert new hotel list data
-    // app.post('/hotelListData', async (req, res) => {
-    //   try {
-    //     const newItem = req.body;
-    //     const result = await hotelListDataCollection.insertOne(newItem);
-    //     res.json(result);
-    //   } catch (error) {
-    //     console.error('Error inserting into hotel list data:', error);
-    //     res.status(500).json({ error: 'Internal Server Error' });
-    //   }
-    // });
+    // Route to insert new hotel list data
+    app.post('/hotel-list', async (req, res) => {
+      try {
+        const newItem = req.body;
+        const result = await hotelListCollection.insertOne(newItem);
+        res.json(result);
+      } catch (error) {
+        console.error('Error inserting into hotel list data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    });
 
     // Route to fetch earning list data
     app.get('/earningList', async (req, res) => {
