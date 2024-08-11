@@ -34,7 +34,7 @@ async function run() {
     const earningListCollection = db.collection("earningList");
 
     // Route to fetch hotel data
-    app.get('/hotelData', async (req, res) => {
+    app.get('/hotel-data', async (req, res) => {
       try {
         const result = await hotelDataCollection.find().toArray();
         res.json(result);
